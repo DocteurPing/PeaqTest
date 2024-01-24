@@ -72,6 +72,7 @@ fn delete_row(csv_data: &mut CSVData, row_index: usize) {
     if row_index > 0 && row_index <= csv_data.records {
         csv_data.data.remove(row_index - 1);
         csv_data.records -= 1;
+        println!("Line {} deleted successfully", row_index);
         display_entire_file(csv_data);
     } else {
         println!("Invalid row index for deletion");
@@ -82,6 +83,7 @@ fn delete_row(csv_data: &mut CSVData, row_index: usize) {
 fn modify_field(csv_data: &mut CSVData, row_index: usize, field_index: usize, new_value: &str) {
     if row_index > 0 && row_index <= csv_data.records && field_index > 0 && field_index <= csv_data.fields {
         csv_data.data[row_index - 1][field_index - 1] = format!(r#""{}""#, new_value);
+        println!("Line {} field {} modified successfully", row_index, field_index);
         paginate(csv_data, row_index, row_index);
     } else {
         println!("Invalid row or field index for modification");
